@@ -6,26 +6,49 @@ require_relative "jury"
 #After your tests pass, uncomment this code below
 #=========================================================
 # # Create an array of twenty hopefuls to compete on the island of Borneo
-# @contestants = %w(carlos walter aparna trinh diego juliana poornima juha sofia julia fernando dena orit colt zhalisa farrin muhammed ari rasha gauri)
-# @contestants.map!{ |contestant| Contestant.new(contestant) }.shuffle!
+ @contestants = %w(carlos walter aparna trinh diego juliana poornima juha sofia julia fernando dena orit colt zhalisa farrin muhammed ari rasha gauri)
+ @contestants.map!{ |contestant| Contestant.new(contestant) }.shuffle!
 #
 # # Create two new tribes with names
-# @coyopa = Tribe.new(name: "Pagong", members: @contestants.shift(10))
-# @hunapu = Tribe.new(name: "Tagi", members: @contestants.shift(10))
+ @coyopa = Tribe.new(name: "Pagong", members: @contestants.shift(10))
+ @hunapu = Tribe.new(name: "Tagi", members: @contestants.shift(10))
 #
 # # Create a new game of Survivor
-# @borneo = Game.new(@coyopa, @hunapu)
+ @borneo = Game.new(@coyopa, @hunapu)
 #=========================================================
 
 
 #This is where you will write your code for the three phases
 def phase_one
+	eviction_list = []
+	8.times do
+		losing_tribe = @borneo.immunity_challenge
+		immune_member = @borneo.individual_immunity_challenge
+		eviction_member = losing_tribe.tribal_council immune: immune_member
+		eviction_list << eviction_member
+	end
+	eviction_list.length	
 end
 
 def phase_two
+	eviction_list = []
+	3.times do
+		immune_member = @merge_tribe.members.shuffle.first
+		eviction_member = @merge_tribe.tribal_council immune: immune_member
+		eviction_list << eviction_member
+	end	
+	eviction_list.length
 end
 
 def phase_three
+	jury_list = []
+	7.times do
+		immune_member = @merge_tribe.members.shuffle.first
+		eviction_member = @merge_tribe.tribal_council immune: immune_member
+		jury_list << eviction_member
+	end
+	@jury.members = jury_list
+	@jury.members.length
 end
 
 

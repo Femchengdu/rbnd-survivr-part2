@@ -9,7 +9,7 @@ class Game
 	end
 
 	def immunity_challenge
-		@tribes.first
+		tribes.shuffle.first
 	end
 
 	def clear_tribes
@@ -25,7 +25,6 @@ class Game
 	end
 
 	def individual_immunity_challenge
-		immunity_challenge.members.first
+		immunity_challenge.members.shuffle.first
 	end
-	
 end

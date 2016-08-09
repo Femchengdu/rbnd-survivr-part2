@@ -12,8 +12,9 @@ class Tribe
 
 	def tribal_council immune: immune_member
 		@immune = immune
-		evict_members = members.reject {|n| n == @immune}
-		rnd = rand(evict_members.length)
-		evict_members[rnd]
+		evictable_members = members.reject {|n| n == @immune}
+		rnd = rand(evictable_members.length)
+		to_delete = evictable_members[rnd]
+		members.delete(to_delete)
 	end
 end

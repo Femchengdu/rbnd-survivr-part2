@@ -35,14 +35,14 @@ class Jury
 	end
 
 	def report_votes results_hash
-		results_hash.each do |k,v|
-			puts "#{k}'s socore is #{v}"
+		results_hash.each do |key,value|
+			puts "#{key}'s socore is #{value}"
 		end
 	end
 
 	def announce_winner results_hash
-		results_hash.select do |k, v|
-			return k if v > 3
+		results_hash.select do |key, value|
+			return key if value > 3
 		end
 	end
 end
