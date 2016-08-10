@@ -1,0 +1,17 @@
+GIT
+  remote: https://github.com/Femchengdu/colorizr.git
+  revision: 9f3b18055942b09bd00effb8a723e45b25cae8eb
+  specs:
+    colorizr (0.1.0)
+
+GEM
+  specs:
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  colorizr!
+
+BUNDLED WITH
+   1.11.2
