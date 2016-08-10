@@ -3,7 +3,7 @@ class Tribe
 	def initialize(opt = {})
 		@name = opt[:name]
 		@members = opt[:members]
-		puts self
+		puts "#{self}".blue
 	end
 
 	def to_s
