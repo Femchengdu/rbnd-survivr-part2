@@ -37,12 +37,13 @@ class Jury
 
 	def report_votes results_hash
 		results_hash.each do |key,value|
-			puts "#{key}'s socore is #{value}".pink
+			puts "#{key}'s socore is #{value}".red
 		end
 	end
 
 	def announce_winner results_hash
 		winner = results_hash.select{|key, value| value > 3}
-		puts winner.keys.first.name.red
+		puts "The winner is #{winner.keys.first}!!!".light_blue
+		winner.keys.first
 	end
 end
