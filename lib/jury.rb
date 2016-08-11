@@ -18,8 +18,7 @@ class Jury
 	def voting votes
 		votes_arr = []
 		members.each do
-			vote = votes[rand(2)]
-			colors = [:yellow, :blue]
+			vote = votes.sample
 			votes_arr << vote
 			puts vote
 		end
@@ -27,7 +26,7 @@ class Jury
 	end
 
 	def cast_votes finalist_array
-		votes_hash = Hash.new 0
+		votes_hash = Hash.new {|hash, key| hash[key] = 0}
 		votes_res = voting finalist_array
 		votes_res.each do |voto|
 			votes_hash[voto] += 1

@@ -25,7 +25,7 @@ def phase_one
 	eviction_list = []
 	8.times do
 		losing_tribe = @borneo.immunity_challenge
-		immune_member = @borneo.individual_immunity_challenge
+		immune_member = nil
 		eviction_member = losing_tribe.tribal_council immune: immune_member
 		eviction_list << eviction_member
 	end
@@ -35,8 +35,9 @@ end
 def phase_two
 	eviction_list = []
 	3.times do
-		immune_member = @merge_tribe.members.shuffle.first
-		eviction_member = @merge_tribe.tribal_council immune: immune_member
+		immune_member = @borneo.individual_immunity_challenge
+		#eviction_member = @merge_tribe.tribal_council immune: immune_member
+		eviction_member = @borneo.tribes[0].tribal_council immune: immune_member
 		eviction_list << eviction_member
 	end	
 	eviction_list.length
@@ -45,8 +46,8 @@ end
 def phase_three
 	jury_list = []
 	7.times do
-		immune_member = @merge_tribe.members.shuffle.first
-		eviction_member = @merge_tribe.tribal_council immune: immune_member
+		immune_member = @borneo.individual_immunity_challenge
+		eviction_member = @borneo.tribes[0].tribal_council immune: immune_member
 		jury_list << eviction_member
 	end
 	@jury.members = jury_list
@@ -58,10 +59,10 @@ end
 #=========================================================
  phase_one #8 eliminations
  @merge_tribe = @borneo.merge("Cello") # After 8 eliminations, merge the two tribes together
- phase_two #3 more eliminations
+ phase_two #3 more eliminations 
  @jury = Jury.new
- phase_three #7 elminiations become jury members
+ phase_three #7 elminiations become jury members 
  finalists = @merge_tribe.members #set finalists
- vote_results = @jury.cast_votes(finalists) #Jury members report votes
- @jury.report_votes(vote_results) #Jury announces their votes
+ vote_results = @jury.cast_votes(finalists) #Jury members report votes 
+ @jury.report_votes(vote_results) #Jury announces their votes 
  @jury.announce_winner(vote_results) #Jury announces final winner

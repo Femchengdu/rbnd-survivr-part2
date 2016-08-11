@@ -1,7 +1,7 @@
 class Game
 	attr_reader :tribes
 	def initialize *tribe
-		@tribes = tribe
+		@tribes = ([] << tribe).flatten!
 	end
 
 	def add_tribe new_tribe
@@ -16,15 +16,15 @@ class Game
 		@tribes = []
 	end
 
-	def merge combined_tribe
-		member_array = []
-		tribes.each do |tribe_members|
-			member_array.concat(tribe_members.members)
-		end
-		Tribe.new({name: combined_tribe, members: member_array})
+	def merge combined_tribe	
+		member_array = tribes.map(&:members).flatten
+		merged_tribe = Tribe.new({name: combined_tribe, members: member_array})
+		clear_tribes
+		add_tribe merged_tribe
+		merged_tribe
 	end
 
 	def individual_immunity_challenge
-		immunity_challenge.members.shuffle.first
+		tribes[0].members.sample
 	end
 end
