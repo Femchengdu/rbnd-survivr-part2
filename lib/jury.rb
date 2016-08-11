@@ -26,11 +26,13 @@ class Jury
 	end
 
 	def cast_votes finalist_array
-		votes_hash = Hash.new {|hash, key| hash[key] = 0}
+		votes_hash = {finalist_array.first => 0, finalist_array.last => 0}
 		votes_res = voting finalist_array
 		votes_res.each do |voto|
-			votes_hash[voto] += 1
+			votes_hash[finalist_array.first] += 1 if voto == finalist_array.first
+			votes_hash[finalist_array.last]  += 1 if voto == finalist_array.last
 		end
+
 		votes_hash
 	end
 

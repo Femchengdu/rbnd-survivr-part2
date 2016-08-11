@@ -12,7 +12,7 @@ class Tribe
 
 	def tribal_council immune: immune_member
 		@immune = immune
-		evictable_members = members.reject {|n| n == @immune}
+		evictable_members = members.reject {|member| member == @immune}
 		to_delete = evictable_members.sample
 		members.delete(to_delete)
 	end
