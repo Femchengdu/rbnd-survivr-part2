@@ -32,7 +32,6 @@ class Jury
 			votes_hash[finalist_array.first] += 1 if voto == finalist_array.first
 			votes_hash[finalist_array.last]  += 1 if voto == finalist_array.last
 		end
-
 		votes_hash
 	end
 
